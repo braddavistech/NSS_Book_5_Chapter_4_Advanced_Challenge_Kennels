@@ -1,0 +1,30 @@
+.navbar {
+  background-color: white;
+}
+.nav-item {
+  padding-bottom: .3vw;
+}
+#searchInput {
+  font-weight: bold;
+  background-color: #007bff;
+  flex-direction: column;
+  position: relative;
+  margin-left: 10vw;
+  margin-top: 4px;
+  padding: 3px;
+}
+::placeholder {
+  color: darkgray;
+  text-align: center;
+}
+#searchInput > input {
+  display: inline-flex;
+}
+.searchOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: .5vw;
+  margin-bottom: .5vw;
+  list-style-type: none;
+  background-color: #007bff;
+}
