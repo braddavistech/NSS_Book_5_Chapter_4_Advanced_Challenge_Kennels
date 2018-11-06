@@ -6,13 +6,13 @@ const SearchSuggestion = (props) => {
     <li className="searchOptions" key={result.id}>Pet: {result.name}</li>
   ))
   const printOwners = props.searchReturns[1].map(result => (
-    <li className="searchOptions" key={result.id}>Owners: {result.name}</li>
+    <li className="searchOptions" key={result.id}>Owner: {result.name}</li>
   ))
   const printEmployees = props.searchReturns[2].map(result => (
-    <li className="searchOptions" key={result.id}>Employees: {result.name}</li>
+    <li className="searchOptions" key={result.id}>Employee: {result.name}</li>
   ))
   const printLocations = props.searchReturns[3].map(result => (
-    <li className="searchOptions" key={result.id}>Locations: {result.name}</li>
+    <li className="searchOptions" key={result.id}>Location: {result.name}</li>
   ))
   return <ul>{printAnimals}{printOwners}{printEmployees}{printLocations}</ul>
   } else return <ul></ul>
