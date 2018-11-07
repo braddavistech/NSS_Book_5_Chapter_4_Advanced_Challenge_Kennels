@@ -5,7 +5,7 @@ import "./LocationList.css";
 class LocationList extends Component {
   render() {
     return (
-      <div>
+      <div id="ApplicationView">
         <header>STUDENT KENNELS</header>
         {
           this.props.locations.map(location =>

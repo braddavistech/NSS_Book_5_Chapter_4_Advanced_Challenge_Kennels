@@ -4,8 +4,9 @@ import AnimalList from './animals/AnimalList'
 import LocationList from './location/LocationList'
 import EmployeeList from './employee/EmployeeList'
 import OwnersList from './owners/OwnersList'
+import SearchList from './search/SearchList'
 import APITools from '../modules/APITools'
-// import SearchList from './search/SearchList'
+
 
 
 export default class ApplicationViews extends Component {
@@ -18,7 +19,6 @@ export default class ApplicationViews extends Component {
     searchValue: {}
   }
 
-
   componentDidMount() {
     const newState = {}
     APITools.getAllAnimals().then(animals => newState.animals = animals)
@@ -30,8 +30,7 @@ export default class ApplicationViews extends Component {
     })
   }
 
-
-  render() {
+  render () {
     return (
       <React.Fragment>
         <Route exact path="/" render={(props) => {
@@ -46,11 +45,12 @@ export default class ApplicationViews extends Component {
         <Route exact path="/owners" render={(props) => {
           return <OwnersList animals={this.state.animals} owners={this.state.owners} />
         }} />
-        {/* <Route exact path="/search" render={(props) => {
-          console.log(this.searchValue)
-          return <SearchList searchValue={this.state.searchValue} animals={this.state.animals} employees={this.state.employees} owners={this.state.owners} locations={this.state.locations} />
-        }} /> */}
+        <Route exact path="/search" render={(props) => {
+          return <SearchList results={this.state.search}/>
+        }} />
       </React.Fragment>
     )
   }
+
+
 }

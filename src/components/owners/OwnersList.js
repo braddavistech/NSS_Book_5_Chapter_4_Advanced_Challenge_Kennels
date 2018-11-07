@@ -19,7 +19,7 @@ class OwnersList extends Component {
       return owner
     })
     return (
-      <div>
+      <div id="ApplicationView">
         <header>ANIMAL OWNERS</header>
         {
           this.props.owners.map(owner =>

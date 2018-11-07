@@ -21,7 +21,7 @@ class AnimalList extends Component {
         return animal
       })
     return (
-      <div>
+      <div id="ApplicationView">
         <header>CURRENT ANIMALS</header>
         {
           this.props.animals.map(animal =>
