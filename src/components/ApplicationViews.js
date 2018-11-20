@@ -16,40 +16,48 @@ export default class ApplicationViews extends Component {
     locations: [],
     animals: [],
     owners: [],
-    searchValue: {}
+    searchValue: []
+  }
+
+  setSearchValue(searchData) {
+    this.setState({ searchValue: searchData })
   }
 
   componentDidMount() {
     const newState = {}
     APITools.getAllAnimals().then(animals => newState.animals = animals)
-    .then(() => APITools.getAllOwners()).then(owners => newState.owners = owners)
-    .then(() => APITools.getAllEmployees()).then(employees => newState.employees = employees)
-    .then(() => APITools.getAllLocations()).then(locations => newState.locations = locations)
-    .then(() => {
-      this.setState(newState)
-    })
+      .then(() => APITools.getAllOwners()).then(owners => newState.owners = owners)
+      .then(() => APITools.getAllEmployees()).then(employees => newState.employees = employees)
+      .then(() => APITools.getAllLocations()).then(locations => newState.locations = locations)
+      .then(() => {
+        this.setState(newState)
+      })
   }
 
-  render () {
-    return (
-      <React.Fragment>
-        <Route exact path="/" render={(props) => {
-          return <LocationList locations={this.state.locations} />
-        }} />
-        <Route exact path="/animals" render={(props) => {
-          return <AnimalList animals={this.state.animals} owners={this.state.owners} />
-        }} />
-        <Route exact path="/employees" render={(props) => {
-          return <EmployeeList employees={this.state.employees} />
-        }} />
-        <Route exact path="/owners" render={(props) => {
-          return <OwnersList animals={this.state.animals} owners={this.state.owners} />
-        }} />
-        <Route exact path="/search" render={(props) => {
-          return <SearchList results={this.state.search}/>
-        }} />
-      </React.Fragment>
-    )
+  render() {
+    if (this.props.showSearch) {
+      return <SearchList />
+    } else {
+      return (
+        <React.Fragment>
+          <Route exact path="/" render={(props) => {
+            return <LocationList locations={this.state.locations} />
+          }} />
+          <Route exact path="/animals" render={(props) => {
+            return <AnimalList animals={this.state.animals} owners={this.state.owners} />
+          }} />
+          <Route exact path="/employees" render={(props) => {
+            return <EmployeeList employees={this.state.employees} />
+          }} />
+          <Route exact path="/owners" render={(props) => {
+            return <OwnersList animals={this.state.animals} owners={this.state.owners} />
+          }} />
+          <Route exact path="/search" render={(props) => {
+            return <SearchList results={this.props.searchList} />
+          }} />
+        </React.Fragment>
+      )
+    }
   }
 
 

@@ -14,7 +14,7 @@ const SearchSuggestion = (props) => {
   const printLocations = props.searchReturns[3].map(result => (
     <li className="searchOptions" key={result.id}>Location: {result.name}</li>
   ))
-  return <ul>{printAnimals}{printOwners}{printEmployees}{printLocations}</ul>
+  return <ul id="navbarSearchResults">{printAnimals}{printOwners}{printEmployees}{printLocations}</ul>
   } else return <ul></ul>
 }
 
