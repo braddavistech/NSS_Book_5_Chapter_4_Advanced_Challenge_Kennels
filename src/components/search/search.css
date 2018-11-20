@@ -1,0 +1,17 @@
+#searchResults {
+  margin-top: 5%;
+}
+.individualElement {
+  border: 1px solid black;
+  margin: 1%;
+  border-radius: 5px;
+}
+.individualElement > h4 {
+font-size: 20px;
+}
+.individualElement > h3 {
+font-size: 25px;
+}
+.individualElement > h1 {
+font-size: 30px;
+}

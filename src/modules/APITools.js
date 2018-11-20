@@ -1,4 +1,4 @@
-const localURL = "http://localhost:5002/"
+const localURL = "http://localhost:8088/"
 
 export default Object.create (null, {
     searchApiInput: {
