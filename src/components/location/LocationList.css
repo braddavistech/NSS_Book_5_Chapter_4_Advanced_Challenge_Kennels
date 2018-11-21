@@ -1,16 +1,21 @@
-
 header {
   font-size: 6vw;
 }
 .address {
-  font-size: 4.5vw;
-  margin: 5%;
+  margin: 2%;
+  padding-bottom: 1%;
+  display: inline-block;
+  width: 45%;
+  border-radius: 10px;
+  background-color: white;
 }
 .address > h4 {
-  font-size: 5.5vw;
+  font-size: 30px;
   font-weight: bold;
+  margin-bottom: 0px;
 }
 .address > h5 {
   margin: 0px;
+  font-size: 20px;
   font-weight: bold;
 }

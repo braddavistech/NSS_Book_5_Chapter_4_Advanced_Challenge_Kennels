@@ -1,39 +1,38 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import "./AnimalList.css";
+import dog from "./DogIcon.png"
 
 
 class AnimalList extends Component {
   render() {
-    let ownerNumbers = [];
-    this.props.owners.map(owner => {
-      ownerNumbers.push(owner)
-      return ownerNumbers
-    })
-    this.props.animals.map(animal => {
-        let tempString = []
-        animal.owner.map(names => {
-        let number = names - 1
-        tempString.push(ownerNumbers[number].name)
-        return tempString
-        })
-        tempString = tempString.join(", ")
-        animal.ownerNames = tempString
-        return animal
-      })
+
     return (
       <div id="ApplicationView">
         <header>CURRENT ANIMALS</header>
-        {
-          this.props.animals.map(animal =>
-            <section className="animal" key={animal.id}>
-              <h4>{animal.name}</h4>
-              <h5>BREED: {animal.breed}</h5>
-              <h5>OWNER(S): {animal.ownerNames}</h5>
-            </section>)
-        }
+              {
+                this.props.animals.map(animal =>
+                  <div key={animal.id} className="animalCard">
+                    <div className="card-body">
+                      <h5 >
+                        <img src={dog} className="icon--dog" alt="Dog Icon"/>
+                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
+                        <button id="deleteButton" href="#"
+                          onClick={() => this.props.deleteAnimal(animal.id)}
+                          className="card-link">Delete</button>
+                      </h5>
+                      <h4>{animal.name}</h4>
+                      <h5>{animal.breed}</h5>
+                    </div>
+                  </div>
+                )
+              }
       </div>
     )
   }
+
+
 }
+
 
 export default AnimalList

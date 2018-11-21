@@ -1,18 +1,15 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom";
 import $ from "jquery";
-import APITools from '../../modules/APITools'
-import SearchSuggestions from "../../modules/SearchSuggestions"
-// import ReactDOM from 'react-dom'
-import "./NavBar.css"
-import "bootstrap/dist/css/bootstrap.min.css"
-// import SearchList from "../search/SearchList"
+import APITools from "../../modules/APITools";
+import SearchSuggestions from "../../modules/SearchSuggestions";
+import "./NavBar.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 class NavBar extends Component {
   state = {
-    searchString: '',
-    searchReturns: [],
-    printString: " "
+    searchString: "",
+    searchReturns: []
   }
 
   handleChange = () => {
@@ -49,14 +46,13 @@ class NavBar extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log("insideHandleSubmit")
     if (event.keyCode === 13) {
-      console.log("should send to kennel view", this.state.searchReturns)
+      console.log("should send to kennel view", this.state.searchReturns);
+      this.searchInput.value = "";
+      sessionStorage.setItem("searchString", this.state.searchString)
       sessionStorage.setItem("searchResults", JSON.stringify(this.state.searchReturns));
       $("#navbarSearchResults").hide();
       this.props.show();
-      // return <Link to="/search"/>;
-      // this.props.results(this.state.searchReturns);
     }
   }
 
@@ -78,7 +74,7 @@ class NavBar extends Component {
           </li>
           <li className="nav-item">
             <article id="searchInput" onKeyUp={this.handleSubmit}>
-              <input type="text" onKeyUp={this.handleSubmit} ref={input => this.searchInput = input} onChange={this.handleChange} placeholder="Enter Search"></input>
+              <input type="text" id="searchText" onKeyUp={this.handleSubmit} ref={input => this.searchInput = input} onChange={this.handleChange} placeholder="Enter Search"></input>
               <SearchSuggestions searchReturns={this.state.searchReturns} />
             </article>
 

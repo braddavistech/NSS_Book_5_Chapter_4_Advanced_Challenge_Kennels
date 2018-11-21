@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import "./search.css";
 import PrintSearch from "../../modules/printSearch";
-// import NavBar from '../nav/NavBar';
-
 
 class SearchList extends Component {
   state = {
@@ -12,14 +10,11 @@ class SearchList extends Component {
 
   render() {
       return (
-        <div>
           <React.Fragment>
-          <PrintSearch  />
+            <PrintSearch  />
           </React.Fragment>
-        </div>
       )
   }
 }
-
 
 export default SearchList

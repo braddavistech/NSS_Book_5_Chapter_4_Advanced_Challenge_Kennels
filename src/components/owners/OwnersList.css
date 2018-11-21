@@ -1,14 +1,18 @@
 .owners {
-  margin-top: 2vw;
-  margin-bottom: 2vw;
+  margin: 2%;
+  margin-bottom: 2%;
+  margin-top: 1%;
+  display: inline-block;
+  width: 45%;
+  border-radius: 10px;
+  background-color: white;
 }
-h4 {
-  font-size: 4vw;
+.owners > h4 {
+  font-size: 25px;
   font-weight: bold;
 }
 .owners > h5 {
-  font-size: 3vw;
+  font-size: 20px;
   font-weight: bold;
-  padding-bottom: 2vw;
 }
 

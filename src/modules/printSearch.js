@@ -1,26 +1,26 @@
 import React from 'react';
 
 const SearchPrint = (props) => {
+    let searchString = sessionStorage.getItem("searchString");
     let searchList = JSON.parse(sessionStorage.getItem("searchResults"));
-    console.log("show Results: ", searchList);
     if (searchList !== null) {
     let animals = searchList[0];
     let owners = searchList[1];
     let locations = searchList[3];
     let employees = searchList[2];
     let animalPrint = animals.map(animal => (
-        <section key={animal.id} className="individualElement"><h4>Pet:</h4><h1>{animal.name}</h1><h3>{animal.breed}</h3></section>
+        <section key={animal.id} className="individualElement"><h2>{animal.name}</h2><h3>{animal.breed}</h3><h6>(Pet)</h6></section>
       ))
     const ownerPrint = owners.map (owner => (
-        <section key={owner.id} className="individualElement"><h4>Owner:</h4><h1>{owner.name}</h1></section>
+        <section key={owner.id} className="individualElement"><h2>{owner.name}</h2><h6>(Owner)</h6></section>
       ))
     const locationPrint = locations.map (location => (
-        <section key={location.id} className="individualElement"><h4>Location:</h4><h1>{location.name}</h1></section>
+        <section key={location.id} className="individualElement"><h2>{location.name}</h2><h6>(Location)</h6></section>
       ))
     const employeePrint = employees.map (employee => (
-        <section key={employee.id} className="individualElement"><h4>Employee:</h4><h1>{employee.name}</h1></section>
+        <section key={employee.id} className="individualElement"><h2>{employee.name}</h2><h6>(Employee)</h6></section>
       ))
-      return <div id="searchResults"><h1 id="searchTitle">Search Results</h1>{animalPrint}{ownerPrint}{locationPrint}{employeePrint}</div>
+      return <div id="ApplicationView"><header>SEARCH RESULTS</header><h1>Results for "{searchString}".</h1>{animalPrint}{ownerPrint}{locationPrint}{employeePrint}</div>
     } else { return <div></div>}
 }
 
