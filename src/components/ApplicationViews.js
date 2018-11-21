@@ -6,8 +6,7 @@ import EmployeeList from './employee/EmployeeList'
 import OwnersList from './owners/OwnersList'
 import SearchList from './search/SearchList'
 import APITools from '../modules/APITools'
-
-
+import AnimalDetail from './animals/AnimalDetail'
 
 export default class ApplicationViews extends Component {
 
@@ -16,12 +15,21 @@ export default class ApplicationViews extends Component {
     locations: [],
     animals: [],
     owners: [],
-    searchValue: []
   }
 
-  setSearchValue(searchData) {
-    this.setState({ searchValue: searchData })
-  }
+  deleteAnimal = id => {
+    return fetch(`http://localhost:8088/animals/${id}`, {
+        method: "DELETE"
+    })
+    .then(e => e.json())
+    .then(() => fetch(`http://localhost:8088/animals`))
+    .then(e => e.json())
+    .then(animals => this.setState({
+        animals: animals
+    })
+  )
+}
+
 
   componentDidMount() {
     const newState = {}
@@ -44,7 +52,7 @@ export default class ApplicationViews extends Component {
             return <LocationList locations={this.state.locations} />
           }} />
           <Route exact path="/animals" render={(props) => {
-            return <AnimalList animals={this.state.animals} owners={this.state.owners} />
+            return <AnimalList deleteAnimal={this.deleteAnimal} animals={this.state.animals} owners={this.state.owners} />
           }} />
           <Route exact path="/employees" render={(props) => {
             return <EmployeeList employees={this.state.employees} />
@@ -52,9 +60,9 @@ export default class ApplicationViews extends Component {
           <Route exact path="/owners" render={(props) => {
             return <OwnersList animals={this.state.animals} owners={this.state.owners} />
           }} />
-          <Route exact path="/search" render={(props) => {
-            return <SearchList results={this.props.searchList} />
-          }} />
+          <Route path="/animals/:animalId(\d+)" render={(props) => {
+          return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals} />
+        }} />
         </React.Fragment>
       )
     }

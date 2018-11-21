@@ -1,17 +1,28 @@
-#searchResults {
-  margin-top: 5%;
+#ApplicationView > h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
 .individualElement {
-  border: 1px solid black;
-  margin: 1%;
-  border-radius: 5px;
+  margin: 2%;
+  padding: 1%;
+  display: inline-block;
+  width: 45%;
+  border-radius: 10px;
+  background-color: white;
 }
-.individualElement > h4 {
-font-size: 20px;
+.individualElement > h2 {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
 .individualElement > h3 {
-font-size: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
-.individualElement > h1 {
-font-size: 30px;
-}
+.individualElement > h6 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  }

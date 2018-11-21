@@ -8,9 +8,9 @@
   font-weight: bold;
   background-color: #007bff;
   flex-direction: column;
-  position: relative;
-  margin-left: 10vw;
-  margin-top: 4px;
+  position: fixed;
+  right: 2vw;
+  top: 4px;
   padding: 3px;
 }
 ::placeholder {

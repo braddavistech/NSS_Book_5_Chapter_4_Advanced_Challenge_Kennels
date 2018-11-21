@@ -6,7 +6,7 @@ class LocationList extends Component {
   render() {
     return (
       <div id="ApplicationView">
-        <header>STUDENT KENNELS</header>
+        <header>KENNEL LOCATIONS</header>
         {
           this.props.locations.map(location =>
             <section className="address" key={location.id}>
