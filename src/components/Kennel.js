@@ -6,11 +6,20 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 class Kennel extends Component {
   state = {
-    showSearch: false
+    showSearch: false,
+    results: []
   }
 
-  showSearchValue = () => {
-    this.setState({showSearch: true})
+  searchResult = (searchList) => {
+    this.setState({
+      results: searchList
+    })
+  }
+
+  saveSearchResults = () => {
+    this.setState({
+      showSearch: true
+    })
   }
 
   hideSearchValue = () => {
@@ -20,8 +29,8 @@ class Kennel extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar  show={this.showSearchValue} hide={this.hideSearchValue}/>
-        <ApplicationViews showSearch={this.state.showSearch}/>
+        <NavBar  hide={this.hideSearchValue} search={this.saveSearchResults} save={this.searchResult}/>
+        <ApplicationViews showSearch={this.state.showSearch} results={this.state.results} hide={this.hideSearchValue}/>
       </React.Fragment>
     )
   }

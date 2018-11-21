@@ -27,14 +27,12 @@ class NavBar extends Component {
         })
         Promise.all(promises)
           .then(results => {
-            console.log(results)
             this.setState({
               searchReturns: results
             })
+            this.props.save(results);
           })
           .then(() => {
-            // console.log(this.state.searchReturns)
-            console.log("resultsValue: ", this.state.searchReturns)
             return (this.state.searchReturns)
           })
       } else if (!this.state.searchString) {
@@ -47,12 +45,11 @@ class NavBar extends Component {
 
   handleSubmit = (event) => {
     if (event.keyCode === 13) {
-      console.log("should send to kennel view", this.state.searchReturns);
       this.searchInput.value = "";
-      sessionStorage.setItem("searchString", this.state.searchString)
-      sessionStorage.setItem("searchResults", JSON.stringify(this.state.searchReturns));
+      sessionStorage.setItem("searchString", this.state.searchString);
+      // sessionStorage.setItem("searchResults", JSON.stringify(this.state.searchReturns));
       $("#navbarSearchResults").hide();
-      this.props.show();
+      this.props.search(this.state.searchString);
     }
   }
 
