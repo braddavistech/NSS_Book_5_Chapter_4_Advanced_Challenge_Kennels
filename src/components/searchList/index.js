@@ -13,46 +13,6 @@ export default class SearchPrint extends Component {
     searchString: "",
   }
 
-  componentDidMount() {
-    this.reload()
-  }
-
-  reload = () => {
-    console.log(this.props.kennel[0])
-    // this.setState({
-    //   animals: this.props.kennel.results[0],
-    //   owners: this.props.kennel.results[1],
-    //   employees: this.props.kennel.results[2],
-    //   locations: this.props.kennel.results[3],
-    // })
-    // let searchValue = sessionStorage.getItem("searchString");
-    // this.setState({ searchString: searchValue })
-    // APITools.searchApiInput(searchValue, "animals").then(data => this.setState({ animals: data }));
-    // APITools.searchApiInput(searchValue, "owners").then(data => this.setState({ owners: data }));
-    // APITools.searchApiInput(searchValue, "employees").then(data => this.setState({ employees: data }));
-    // APITools.searchApiInput(searchValue, "locations").then(data => this.setState({ locations: data }));
-    // this.props.reset();
-  }
-
-
-  // shouldComponentUpdate () {
-  //   this.reload()
-  // }
-
-  // reload() {
-  //   if (this.props.kennel.newSearch) {
-  //     this.setState({ animals: [], owners: [], employees: [], locations: [] })
-  //     let searchValue = sessionStorage.getItem("searchString");
-  //     this.setState({ searchString: searchValue })
-  //     APITools.searchApiInput(searchValue, "animals").then(data => this.setState({ animals: data }));
-  //     APITools.searchApiInput(searchValue, "owners").then(data => this.setState({ owners: data }));
-  //     APITools.searchApiInput(searchValue, "employees").then(data => this.setState({ employees: data }));
-  //     APITools.searchApiInput(searchValue, "locations").then(data => this.setState({ locations: data }));
-  //     this.props.refresh();
-  //     this.props.reset();
-  //   }
-  // }
-
   animalTitle() {
     let animal = this.props.kennel[0].length;
     if (animal > 1) {
