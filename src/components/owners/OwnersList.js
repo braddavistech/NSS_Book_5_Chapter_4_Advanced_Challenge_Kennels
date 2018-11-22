@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./OwnersList.css";
 
 class OwnersList extends Component {
@@ -10,7 +11,10 @@ class OwnersList extends Component {
           this.props.owners.map(owner =>
             < section className="owners" key={owner.id} >
               <h4>{owner.name}</h4>
-              <h5>{owner.phone}</h5>
+              <Link  to={`/owners/${owner.id}`}><button className="detailsLink">Details</button></Link>
+              <button id="deleteButton" href="#"
+                onClick={() => this.props.deleteOwner("owners", owner.id)}
+                className="card-link">Delete</button>
             </section>
           )
         }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import dog from "../animals/DogIcon.png";
 import "./SearchList.css";
+import $ from "jquery";
 
 export default class SearchPrint extends Component {
   state = {
@@ -59,14 +60,16 @@ export default class SearchPrint extends Component {
         {animalString}
         {
           this.props.results[0].map(animal => (
-            <div key={animal.id} className="animalCard">
+            <div key={animal.id} id={`a${animal.id}`} className="animalCard">
               <img src={dog} className="icon--dog" alt="Dog Icon" />
               <h4 className="name">{animal.name}</h4>
               <Link to={`/animals/${animal.id}`}>
                 <button className="detailsLink" onClick={this.props.hide}>Details</button>
               </Link>
               <button id="deleteButton" href="#"
-                onClick={() => this.props.deleteAnimal(animal.id)}
+                onClick={() => this.props.deleteItem("animals",animal.id).then(() => {
+                  $(`#a${animal.id}`).hide()
+                })}
               >Delete</button>
             </div>
           ))
@@ -74,11 +77,15 @@ export default class SearchPrint extends Component {
         {ownerString}
         {
           this.props.results[1].map(owner => (
-            <div key={owner.id} className="otherCard">
+            <div key={owner.id} id={`o${owner.id}`}  className="otherCard">
               <h2 className="name">{owner.name}</h2>
-              <Link to={`/owners/${owner.id}`}><button className="detailsLink" onClick={this.props.hide}>Details</button></Link>
+              <Link to={`/owners/${owner.id}`}>
+              <button className="detailsLink" onClick={this.props.hide}>Details</button>
+              </Link>
               <button id="deleteButton" href="#"
-                onClick={() => this.props.deleteOwner(owner.id)}
+                onClick={() => this.props.deleteItem("owners", owner.id).then(() =>{
+                  $(`#o${owner.id}`).hide()
+                })}
               >Delete</button>
             </div>
           ))
@@ -86,22 +93,32 @@ export default class SearchPrint extends Component {
         {employeeString}
         {
           this.props.results[2].map(employee => (
-            <div key={employee.id} className="otherCard">
+            <div key={employee.id} id={`e${employee.id}`}  className="otherCard">
               <h2 className="name">{employee.name}</h2>
               <Link to={`/employees/${employee.id}`}>
                 <button className="detailsLink" onClick={this.props.hide}>Details</button>
               </Link>
+              <button id="deleteButton" href="#"
+                onClick={() => this.props.deleteItem("employees", employee.id).then(() => {
+                  $(`#e${employee.id}`).hide()
+                })}
+              >Delete</button>
             </div>
           ))
         }
         {locationString}
         {
           this.props.results[3].map(location => (
-            <div key={location.id} className="otherCard">
+            <div key={location.id} id={`l${location.id}`}  className="otherCard">
               <h2 className="name">{location.name}</h2>
               <Link to={`/locations/${location.id}`}>
                 <button className="detailsLink" onClick={this.props.hide}>Details</button>
               </Link>
+              <button id="deleteButton" href="#"
+                onClick={() => this.props.deleteItem("locations", location.id).then(() => {
+                  $(`#l${location.id}`).hide()
+                })}
+              >Delete</button>
             </div>
           ))
         }

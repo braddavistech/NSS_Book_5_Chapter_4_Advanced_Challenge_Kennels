@@ -20,56 +20,20 @@ export default class ApplicationViews extends Component {
     owners: [],
   }
 
-  deleteAnimal = id => {
-    return fetch(`http://localhost:8088/animals/${id}`, {
+  deleteItem = (category, id) => {
+    return fetch(`http://localhost:8088/${category}/${id}`, {
       method: "DELETE"
     })
       .then(e => e.json())
       .then(() => fetch(`http://localhost:8088/animals`))
       .then(e => e.json())
-      .then(animals => this.setState({
-        animals: animals
-      })
-      )
-  }
+      .then(data => {
+        if (category === "animals") {this.setState({animals: data})}
+        else if (category === "owners") {this.setState({owners: data})}
+        else if (category === "employees") {this.setState({employees: data})}
+        else if (category === "locations") {this.setState({locations: data})}
+        })
 
-  deleteOwner= id => {
-    return fetch(`http://localhost:8088/owners/${id}`, {
-      method: "DELETE"
-    })
-      .then(e => e.json())
-      .then(() => fetch(`http://localhost:8088/owners`))
-      .then(e => e.json())
-      .then(owners => this.setState({
-        owners: owners
-      })
-      )
-  }
-
-  deleteEmployee= id => {
-    return fetch(`http://localhost:8088/employees/${id}`, {
-      method: "DELETE"
-    })
-      .then(e => e.json())
-      .then(() => fetch(`http://localhost:8088/employees`))
-      .then(e => e.json())
-      .then(employees => this.setState({
-        employees: employees
-      })
-      )
-  }
-
-  deleteLocation= id => {
-    return fetch(`http://localhost:8088/locations/${id}`, {
-      method: "DELETE"
-    })
-      .then(e => e.json())
-      .then(() => fetch(`http://localhost:8088/locations`))
-      .then(e => e.json())
-      .then(locations => this.setState({
-        locations: locations
-      })
-      )
   }
 
 
@@ -86,7 +50,7 @@ export default class ApplicationViews extends Component {
 
   render() {
     if (this.props.showSearch) {
-      return <SearchPrint hide={this.props.hide} results={this.props.results} />
+      return <SearchPrint hide={this.props.hide} results={this.props.results} deleteItem={this.deleteItem} />
     } else {
       return (
         <React.Fragment>
@@ -94,16 +58,16 @@ export default class ApplicationViews extends Component {
             return <LocationList locations={this.state.locations} />
           }} />
           <Route exact path="/animals" render={(props) => {
-            return <AnimalList deleteAnimal={this.deleteAnimal} animals={this.state.animals} owners={this.state.owners} />
+            return <AnimalList deleteAnimal={this.deleteItem} animals={this.state.animals} owners={this.state.owners} />
           }} />
           <Route exact path="/employees" render={(props) => {
-            return <EmployeeList employees={this.state.employees} />
+            return <EmployeeList deleteEmployee={this.deleteEmployee}employees={this.state.employees} />
           }} />
           <Route exact path="/owners" render={(props) => {
-            return <OwnersList animals={this.state.animals} owners={this.state.owners} />
+            return <OwnersList deleteOwner={this.deleteOwner} animals={this.state.animals} owners={this.state.owners} />
           }} />
           <Route path="/animals/:animalId(\d+)" render={(props) => {
-            return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals} />
+            return <AnimalDetail {...props} deleteAnimal={this.deleteItem} animals={this.state.animals} />
           }} />
           <Route path="/owners/:ownerId(\d+)" render={(props) => {
             return <OwnerDetail {...props} deleteOwner={this.deleteOwner} owners={this.state.owners} />

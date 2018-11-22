@@ -16,9 +16,9 @@ class AnimalList extends Component {
                     <div className="card-body">
                       <h5 >
                         <img src={dog} className="icon--dog" alt="Dog Icon"/>
-                        <Link className="nav-link" to={`/animals/${animal.id}`}>Details</Link>
-                        <button id="deleteButton" href="#"
-                          onClick={() => this.props.deleteAnimal(animal.id)}
+                        <Link className="nav-link" to={`/animals/${animal.id}`}><button className="detailsAnimal">Details</button></Link>
+                        <button id="deleteAnimal" href="#"
+                          onClick={() => this.props.deleteAnimal("animals", animal.id)}
                           className="card-link">Delete</button>
                       </h5>
                       <h4>{animal.name}</h4>
