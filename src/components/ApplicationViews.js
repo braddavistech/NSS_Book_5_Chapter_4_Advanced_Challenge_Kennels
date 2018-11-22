@@ -17,66 +17,49 @@ export default class ApplicationViews extends Component {
     employees: [],
     locations: [],
     animals: [],
-    owners: [],
+    owners: []
   }
-
-  deleteItem = (category, id) => {
-    return fetch(`http://localhost:8088/${category}/${id}`, {
-      method: "DELETE"
-    })
-      .then(e => e.json())
-      .then(() => fetch(`http://localhost:8088/animals`))
-      .then(e => e.json())
-      .then(data => {
-        if (category === "animals") {this.setState({animals: data})}
-        else if (category === "owners") {this.setState({owners: data})}
-        else if (category === "employees") {this.setState({employees: data})}
-        else if (category === "locations") {this.setState({locations: data})}
-        })
-
-  }
-
 
   componentDidMount() {
-    const newState = {}
-    APITools.getAllAnimals().then(animals => newState.animals = animals)
-      .then(() => APITools.getAllOwners()).then(owners => newState.owners = owners)
-      .then(() => APITools.getAllEmployees()).then(employees => newState.employees = employees)
-      .then(() => APITools.getAllLocations()).then(locations => newState.locations = locations)
-      .then(() => {
-        this.setState(newState)
-      })
+    this.getData()
+  }
+
+  getData = () => {
+    APITools.getAll("animals").then(animals => this.setState({animals: animals}))
+      .then(() => APITools.getAll("owners")).then(owners => this.setState({owners: owners}))
+      .then(() => APITools.getAll("employees")).then(employees => this.setState({employees: employees}))
+      .then(() => APITools.getAll("locations")).then(locations => this.setState({locations: locations}))
   }
 
   render() {
-    if (this.props.showSearch) {
-      return <SearchPrint hide={this.props.hide} results={this.props.results} deleteItem={this.deleteItem} />
+    if (this.props.kennel.showSearch) {
+      return <SearchPrint hide={this.props.hide} refresh={this.getData} deletedItem={this.props.refresh} reset={this.props.reset} kennel={this.props.kennel.results} />
     } else {
       return (
         <React.Fragment>
           <Route exact path="/" render={(props) => {
-            return <LocationList locations={this.state.locations} />
+            return <LocationList locations={this.state.locations} refresh={this.getData}/>
           }} />
           <Route exact path="/animals" render={(props) => {
-            return <AnimalList deleteAnimal={this.deleteItem} animals={this.state.animals} owners={this.state.owners} />
+            return <AnimalList  animals={this.state.animals} owners={this.state.owners} refresh={this.getData}/>
           }} />
           <Route exact path="/employees" render={(props) => {
-            return <EmployeeList deleteEmployee={this.deleteEmployee}employees={this.state.employees} />
+            return <EmployeeList employees={this.state.employees} refresh={this.getData}/>
           }} />
           <Route exact path="/owners" render={(props) => {
-            return <OwnersList deleteOwner={this.deleteOwner} animals={this.state.animals} owners={this.state.owners} />
+            return <OwnersList animals={this.state.animals} owners={this.state.owners} refresh={this.getData}/>
           }} />
           <Route path="/animals/:animalId(\d+)" render={(props) => {
-            return <AnimalDetail {...props} deleteAnimal={this.deleteItem} animals={this.state.animals} />
+            return <AnimalDetail {...props} animals={this.state.animals} refresh={this.getData}/>
           }} />
           <Route path="/owners/:ownerId(\d+)" render={(props) => {
-            return <OwnerDetail {...props} deleteOwner={this.deleteOwner} owners={this.state.owners} />
+            return <OwnerDetail {...props} owners={this.state.owners} refresh={this.getData}/>
           }} />
           <Route path="/employees/:employeeId(\d+)" render={(props) => {
-            return <EmployeeDetail {...props} deleteEmployee={this.deleteEmployee} employees={this.state.employees} />
+            return <EmployeeDetail {...props} employees={this.state.employees} refresh={this.getData}/>
           }} />
           <Route path="/locations/:locationId(\d+)" render={(props) => {
-            return <LocationDetail {...props} deleteLocation={this.deleteLocation} locations={this.state.locations} />
+            return <LocationDetail {...props} locations={this.state.locations} refresh={this.getData}/>
           }} />
         </React.Fragment>
       )
