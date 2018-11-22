@@ -3,22 +3,26 @@
     {
       "id": 1,
       "key": 1,
-      "name": "Jessica Davis"
+      "name": "Jessica Davis",
+      "phone": "615-472-8600"
     },
     {
       "id": 2,
       "key": 1,
-      "name": "Jordan Nelson"
+      "name": "Jordan Nelson",
+      "phone": "615-388-2830"
     },
     {
       "id": 3,
       "key": 1,
-      "name": "Zoe LeBlanc"
+      "name": "Zoe LeBlanc",
+      "phone": "615-796-0863"
     },
     {
       "id": 4,
       "key": 1,
-      "name": "Blaise Roberts"
+      "name": "Blaise Roberts",
+      "phone": "615-986-8000"
     }
   ],
   "locations": [
@@ -101,6 +105,12 @@
       "phone": "615-555-5555"
     },
     {
+      "id": 2,
+      "key": 4,
+      "name": "Steve Martin",
+      "phone": "615-892-1212"
+    },
+    {
       "id": 3,
       "key": 4,
       "name": "Dan Akroid",
@@ -127,6 +137,18 @@
       "ownerId": 3
     },
     {
+      "id": 2,
+      "key": 5,
+      "animalId": 2,
+      "ownerId": 2
+    },
+    {
+      "id": 3,
+      "key": 5,
+      "animalId": 3,
+      "ownerId": 2
+    },
+    {
       "id": 4,
       "key": 5,
       "animalId": 7,
@@ -137,6 +159,12 @@
       "key": 5,
       "animalId": 5,
       "ownerId": 4
+    },
+    {
+      "id": 6,
+      "key": 5,
+      "animalId": 4,
+      "ownerId": 2
     },
     {
       "id": 7,
@@ -167,7 +195,7 @@
       "name": "ANIMALS/OWNERS"
     }
   ],
-  "extras": [
+  "duplicateCopyToTestDelete": [
     {
       "employees": [
         {
@@ -223,12 +251,6 @@
           "key": 3,
           "name": "Tiny",
           "breed": "Mastif"
-        },
-        {
-          "id": 2,
-          "key": 4,
-          "name": "Steve Martin",
-          "phone": "615-892-1212"
         },
         {
           "id": 2,
@@ -311,6 +333,12 @@
           "key": 5,
           "animalId": 1,
           "ownerId": 3
+        },
+        {
+          "id": 2,
+          "key": 5,
+          "animalId": 2,
+          "ownerId": 2
         },
         {
           "id": 3,

@@ -28,12 +28,16 @@ header {
   font-size: 15px;
   font-weight: bold;
 }
-#indiv-deleteButton {
+#animalDeleteButton {
   padding: 6%;
   padding-top: 0px;
   padding-bottom: 0px;
-  background-color: red;
+  background-color: white;
   font-weight: bold;
+  color: rgb(139, 58, 58);
+  border-radius: 20px !important;
+}
+#animalDeleteButton:hover {
+  background-color: red;
   color: white;
-  border-radius: 20px;
 }

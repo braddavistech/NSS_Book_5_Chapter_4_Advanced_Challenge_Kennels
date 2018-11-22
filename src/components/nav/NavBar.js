@@ -17,39 +17,32 @@ class NavBar extends Component {
     this.setState({
       searchString: this.searchInput.value
     }, () => {
-      if (this.state.searchString) {
-        let type = ["animals", "owners", "employees", "locations"]
-        let promises = []
-        type.forEach(entity => {
-          promises.push(APITools.searchApiInput(this.state.searchString, entity).then(data => {
-            return data
-          }))
-        })
-        Promise.all(promises)
-          .then(results => {
-            this.setState({
-              searchReturns: results
-            })
-            this.props.save(results);
+      let type = ["animals", "owners", "employees", "locations"]
+      let promises = []
+      type.forEach(entity => {
+        promises.push(APITools.searchApiInput(this.state.searchString, entity).then(data => {
+          return data
+        }))
+      })
+      Promise.all(promises)
+        .then(results => {
+          this.setState({
+            searchReturns: results
           })
-          .then(() => {
-            return (this.state.searchReturns)
-          })
-      } else if (!this.state.searchString) {
-        this.setState({
-          searchReturns: []
+          // this.props.save(results);
         })
-      }
+        .then(() => {
+          return (this.state.searchReturns)
+        })
     })
   }
 
   handleSubmit = (event) => {
     if (event.keyCode === 13) {
-      this.searchInput.value = "";
       sessionStorage.setItem("searchString", this.state.searchString);
-      // sessionStorage.setItem("searchResults", JSON.stringify(this.state.searchReturns));
       $("#navbarSearchResults").hide();
-      this.props.search(this.state.searchString);
+      this.props.save(this.state.searchReturns);
+      // this.props.search();
     }
   }
 
