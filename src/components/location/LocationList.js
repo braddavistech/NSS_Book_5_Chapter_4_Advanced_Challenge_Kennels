@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./LocationList.css";
 
 
@@ -11,9 +12,10 @@ class LocationList extends Component {
           this.props.locations.map(location =>
             <section className="address" key={location.id}>
               <h4>{location.name}</h4>
-              <h5>{location.address}</h5>
-              <h5>{location.city}, {location.state} {location.zip}</h5>
-              <h5>{location.phone}</h5>
+              <Link className="nav-link" to={`/locations/${location.id}`}><button className="detailsLocation">Details</button></Link>
+              <button id="deleteLocation" href="#"
+                onClick={() => this.props.deleteLocation("locations", location.id)}
+                className="card-link">Delete</button>
             </section>)
         }
       </div>

@@ -19,7 +19,7 @@ export default class AnimalDetail extends Component {
                     <h4 className="indiv-animalName">{animal.name}</h4>
                     <h6 className="indiv-animalBreed">{animal.breed}</h6>
                     <button id="indiv-deleteButton" href="#"
-                            onClick={() => this.props.deleteAnimal(animal.id)
+                            onClick={() => this.props.deleteAnimal("animals", animal.id)
                                             .then(() => this.props.history.push("/animals"))}
                             className="indiv-card-link">Delete</button>
                 </div>

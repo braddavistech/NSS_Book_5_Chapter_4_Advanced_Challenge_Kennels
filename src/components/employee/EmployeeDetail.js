@@ -11,8 +11,7 @@ export default class EmployeeDetail extends Component {
                 <div key={employee.id} className="indiv-employeeCard">
                     <h4 className="indiv-employeeName">{employee.name}</h4>
                     <h6 className="indiv-employeeBreed">{employee.phone}</h6>
-                    <button id="indiv-deleteButton" href="#"
-                            onClick={() => this.props.deleteEmployee(employee.id)
+                    <button id="indiv-deleteButton" href="#" onClick={() => this.props.deleteEmployee("employees", employee.id)
                                             .then(() => this.props.history.push("/employees"))}
                             className="indiv-card-link">Delete</button>
                 </div>

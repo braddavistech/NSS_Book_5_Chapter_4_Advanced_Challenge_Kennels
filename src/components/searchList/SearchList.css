@@ -55,13 +55,8 @@
   border-radius: 20px;
 }
 #deleteButton:hover {
-  padding: 6%;
-  padding-top: 0px;
-  padding-bottom: 0px;
   background-color: red;
-  font-weight: bold;
   color: white;
-  border-radius: 20px;
 }
 .name {
   font-size: 25px;
